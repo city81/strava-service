@@ -1,4 +1,28 @@
 package com.strava.domain
 
-// TODO
-case class Athlete(id: Long)
+case class Athlete(id: Long,
+                   resource_state: Int,
+                   firstname: String,
+                   lastname: String,
+                   profile_medium: String,
+                   profile: String,
+                   city: String,
+                   state: String,
+                   country: String,
+                   sex: String,
+                   friend: Option[String] = None,
+                   follower: Option[String] = None,
+                   premium: Boolean,
+                   created_at: String,
+                   updated_at: String,
+                   approve_followers: Option[Boolean] = None,
+                   follower_count: Int,
+                   friend_count: Int,
+                   mutual_friend_count: Int,
+                   date_preference: String,
+                   measurement_preference: String,
+                   email: String,
+                   ftp: Option[Int] = None,
+                   clubs: Seq[Club] = Seq.empty,
+                   bikes: Seq[Gear] = Seq.empty,
+                   shoes: Seq[Gear] = Seq.empty)
