@@ -8,22 +8,31 @@ import scala.concurrent._
 import scala.language.postfixOps
 
 final class StravaService(val config: Configuration, command: StravaServiceCommand)
-                            (implicit executionContext: ExecutionContext, system: ActorSystem) {
+                         (implicit executionContext: ExecutionContext, system: ActorSystem) {
 
 
-  def retrieveSegmentEffort(id: String): Future[Option[SegmentEffort]] = {
+  def retrieveSegmentEffort(id: Long): Future[Option[SegmentEffort]] = {
 
-    import spray.httpx.PlayJsonSupport._
+    import com.strava.JsonFormats._
 
-    val requestUrl = "segment_efforts/" + id
+    val requestUrl = "segment_efforts/" + id.toString
     command.makeAPIRequest[SegmentEffort](requestUrl)
   }
 
-  def retrieveSegment(id: String): Future[Option[Segment]] = {
+  def retrieveSegment(id: Long): Future[Option[Segment]] = {
 
-    import spray.httpx.PlayJsonSupport._
+    import com.strava.JsonFormats._
 
-    val requestUrl = "segments/" + id
+    val requestUrl = "segments/" + id.toString
     command.makeAPIRequest[Segment](requestUrl)
   }
+
+  def retrieveActivity(id: Long): Future[Option[Activity]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "activities/" + id.toString
+    command.makeAPIRequest[Activity](requestUrl)
+  }
+
 }

@@ -25,21 +25,38 @@ object ExampleStravaService extends App {
 
     val stravaService = new StravaService(config, command)
 
-    // retrieve a segment effort
-    stravaService.retrieveSegmentEffort("5563767904") onComplete {
-      case Success(Some(segmentEffort)) =>
-        println("Segment Effort is: " + segmentEffort)
+    val testSegmentId = 5395793
+    val testSegmentEffortId = 5563767904L
+
+    // retrieve a segment
+    stravaService.retrieveSegment(testSegmentId) onComplete {
+      case Success(Some(segment)) =>
+        println("Segment is: " + segment)
       case Failure(error) =>
         println("error " + error)
     }
 
-//    // retrieve a segment
-//    stravaService.retrieveSegment("5395793") onComplete {
-//      case Success(Some(segment)) =>
-//        println("Segment is: " + segment)
-//      case Failure(error) =>
-//        println("error " + error)
-//    }
+    // retrieve a segment effort
+    stravaService.retrieveSegmentEffort(testSegmentEffortId) onComplete {
+      case Success(Some(segmentEffort)) =>
+        println("Segment Effort is: " + segmentEffort)
+
+        segmentEffort.activity match {
+          case Some(activityId) => {
+            // retrieve an activity from a segment effort
+            stravaService.retrieveActivity(activityId.id) onComplete {
+              case Success(Some(activity)) =>
+                println("Activity is: " + activity)
+              case Failure(error) =>
+                println("error " + error)
+            }
+          }
+          case None => println("no activity")
+        }
+
+      case Failure(error) =>
+        println("error " + error)
+    }
 
   }
 

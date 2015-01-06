@@ -2,7 +2,6 @@ package com.strava.service
 
 import akka.actor.ActorSystem
 import com.strava.Configuration
-import com.strava.domain._
 import spray.client.pipelining._
 import spray.http.{HttpResponse, StatusCodes}
 import spray.httpx.unmarshalling.FromResponseUnmarshaller
@@ -24,8 +23,6 @@ final class StravaServiceCommand(val config: Configuration)
 
   def makeAPIRequest[T](requestUrl: String) //, requestBody: Option[RequestBody] = None)
                        (implicit unmarshaller: FromResponseUnmarshaller[T]): Future[Option[T]] = {
-
-    import spray.httpx.PlayJsonSupport._
 
     val pipeline =
       addHeader("Content-Type", "application/json") ~>

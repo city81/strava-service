@@ -45,7 +45,8 @@ libraryDependencies ++= {
     "org.mockito" % "mockito-all" % "1.9.5" % "test",
     "com.github.nscala-time" %% "nscala-time" % "1.4.0",
     "com.typesafe.play" %% "play-json" % "2.4.0-M1",
-    "org.apache.httpcomponents" % "httpclient" % "4.3.6"
+    "org.apache.httpcomponents" % "httpclient" % "4.3.6",
+    "net.liftweb" %% "lift-json" % "3.0-M2"
   )
 }
 
