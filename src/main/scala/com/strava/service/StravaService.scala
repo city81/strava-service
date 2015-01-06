@@ -35,4 +35,11 @@ final class StravaService(val config: Configuration, command: StravaServiceComma
     command.makeAPIRequest[Activity](requestUrl)
   }
 
+  def retrieveAthlete(id: Long): Future[Option[Athlete]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "athletes/" + id.toString
+    command.makeAPIRequest[Athlete](requestUrl)
+  }
 }

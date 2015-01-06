@@ -1,11 +1,9 @@
 package com.strava
 
-import akka.actor.{ActorSystem, Props}
+import akka.actor.ActorSystem
 import akka.event.Logging
-import akka.io.IO
 import com.strava.service.StravaServiceCommand
 import com.typesafe.config.ConfigFactory
-import spray.can.Http
 
 object Boot extends App {
 

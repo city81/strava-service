@@ -41,10 +41,10 @@ object ExampleStravaService extends App {
       case Success(Some(segmentEffort)) =>
         println("Segment Effort is: " + segmentEffort)
 
+        // retrieve an activity from a segment effort
         segmentEffort.activity match {
-          case Some(activityId) => {
-            // retrieve an activity from a segment effort
-            stravaService.retrieveActivity(activityId.id) onComplete {
+          case Some(activity) => {
+            stravaService.retrieveActivity(activity.id) onComplete {
               case Success(Some(activity)) =>
                 println("Activity is: " + activity)
               case Failure(error) =>
@@ -52,6 +52,19 @@ object ExampleStravaService extends App {
             }
           }
           case None => println("no activity")
+        }
+
+        // retrieve an athlete from a segment effort
+        segmentEffort.athlete match {
+          case Some(athlete) => {
+            stravaService.retrieveAthlete(athlete.id) onComplete {
+              case Success(Some(athlete)) =>
+                println("Athlete is: " + athlete)
+              case Failure(error) =>
+                println("error " + error)
+            }
+          }
+          case None => println("no athlete")
         }
 
       case Failure(error) =>
