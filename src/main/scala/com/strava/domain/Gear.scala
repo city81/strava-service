@@ -1,6 +1,6 @@
 package com.strava.domain
 
-case class Gear(id: Long,
+case class Gear(id: String,
                 primary: Boolean,
                 name: String,
                 distance: Int,

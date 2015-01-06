@@ -27,6 +27,7 @@ object ExampleStravaService extends App {
 
     val testSegmentId = 5395793
     val testSegmentEffortId = 5563767904L
+    val testGearId = "b1737196"
 
     // retrieve a segment
     stravaService.retrieveSegment(testSegmentId) onComplete {
@@ -67,6 +68,14 @@ object ExampleStravaService extends App {
           case None => println("no athlete")
         }
 
+      case Failure(error) =>
+        println("error " + error)
+    }
+
+    // retrieve gear
+    stravaService.retrieveGear(testGearId) onComplete {
+      case Success(Some(gear)) =>
+        println("Gear is: " + gear)
       case Failure(error) =>
         println("error " + error)
     }

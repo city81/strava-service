@@ -11,6 +11,9 @@ The ExampleStravaService file contains the below sample calls:
 
     retrieve a segment
     retrieve a segment effort
+    retrieve an activity
+    retrieve an athlete
+    retrieve gear
 
 
 LICENCE
@@ -24,6 +27,7 @@ TODO
 
 1. Add more API calls
 2. Resolve TODOs
+3. Add Travis CI
 
 [scala]: http://www.scala-lang.org/ "Scala Language"
 [spray]: http://spray.io/ "Spray"

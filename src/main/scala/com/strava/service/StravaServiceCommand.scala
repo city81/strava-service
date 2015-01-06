@@ -10,7 +10,7 @@ import scala.concurrent._
 import scala.language.postfixOps
 
 final class StravaServiceCommand(val config: Configuration)
-                                   (implicit executionContext: ExecutionContext, system: ActorSystem) {
+                                (implicit executionContext: ExecutionContext, system: ActorSystem) {
 
   private def checkStatusCodeAndUnmarshal[T](implicit unmarshaller: FromResponseUnmarshaller[T]): Future[HttpResponse] => Future[Option[T]] =
     (futRes: Future[HttpResponse]) => futRes.map {
@@ -24,8 +24,7 @@ final class StravaServiceCommand(val config: Configuration)
   def makeAPIRequest[T](requestUrl: String) //, requestBody: Option[RequestBody] = None)
                        (implicit unmarshaller: FromResponseUnmarshaller[T]): Future[Option[T]] = {
 
-    val pipeline =
-      addHeader("Content-Type", "application/json") ~>
+    val pipeline = addHeader("Content-Type", "application/json") ~>
         addHeader("Accept", "application/json") ~>
         addHeader("Accept-Charset", "UTF-8") ~>
         addHeader("Authorization", "Bearer " + config.appToken) ~>
