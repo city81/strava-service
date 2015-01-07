@@ -1,6 +1,8 @@
 Strava Service
 ===============
 
+[![Master Build](https://travis-ci.org/city81/strava-service.svg?branch=master)](https://travis-ci.org/city81/strava-service)
+
 This is a project which uses [Scala][scala], [Spray][spray] and the [Lift][lift] JSON lib to make calls to [Strava's][strava] API
 
 To use the service, you'll need a Strava application token. This needs to be placed in a file called strava-service.conf which is referenced by the application.conf file. Example configuration is below:
