@@ -14,6 +14,7 @@ The ExampleStravaService file contains the below sample calls:
     retrieve a segment
     retrieve starred segments
     retrieve a segment effort
+    retrieve all segment efforts
     retrieve an activity
     retrieve an athlete
     retrieve gear
