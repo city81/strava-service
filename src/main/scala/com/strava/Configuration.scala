@@ -1,3 +1,3 @@
 package com.strava
 
-case class Configuration(appToken: String)
+case class Configuration(baseUrl: String, appToken: String)

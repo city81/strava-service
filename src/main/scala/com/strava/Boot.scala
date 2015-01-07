@@ -11,9 +11,10 @@ object Boot extends App {
 
   val serverPort = conf.getInt("port")
 
+  val baseUrl = conf.getString("stravaService.baseUrl")
   val appToken = conf.getString("stravaService.appToken")
 
-  val configuration = Configuration(appToken)
+  val configuration = Configuration(baseUrl, appToken)
 
   // we need an ActorSystem to host our application in
   implicit val system = ActorSystem("on-spray-can")

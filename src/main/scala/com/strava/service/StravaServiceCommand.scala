@@ -31,7 +31,7 @@ final class StravaServiceCommand(val config: Configuration)
         sendReceive ~> checkStatusCodeAndUnmarshal[T]
 
     pipeline {
-      Get(("https://www.strava.com/api/v3/" + requestUrl)) //, requestBody)
+      Get((config.baseUrl + requestUrl)) //, requestBody)
     }
 
   }

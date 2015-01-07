@@ -27,7 +27,7 @@ TODO
 
 1. Add more API calls
 2. Resolve TODOs
-3. Add Travis CI
+3. Add more tests
 
 [scala]: http://www.scala-lang.org/ "Scala Language"
 [spray]: http://spray.io/ "Spray"

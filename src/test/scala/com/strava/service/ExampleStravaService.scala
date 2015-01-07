@@ -2,15 +2,12 @@ package com.strava.service
 
 import akka.actor.ActorSystem
 import com.strava.Configuration
-import com.strava.domain._
-import com.strava.service.StravaService
 import com.typesafe.config.ConfigFactory
-import org.joda.time.DateTime
-import scala.collection.immutable.{HashSet, HashMap}
-import scala.concurrent._
+import org.scalatest.Ignore
+
 import scala.util.{Failure, Success}
 
-
+@Ignore
 object ExampleStravaService extends App {
 
   override def main(args: Array[String]) {
@@ -18,9 +15,10 @@ object ExampleStravaService extends App {
     implicit val system = ActorSystem()
     import system.dispatcher
     val conf = ConfigFactory.load()
+    val baseUrl = conf.getString("stravaService.baseUrl")
     val appToken = conf.getString("stravaService.appToken")
 
-    val config = new Configuration(appToken)
+    val config = new Configuration(baseUrl, appToken)
     val command = new StravaServiceCommand(config)
 
     val stravaService = new StravaService(config, command)

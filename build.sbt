@@ -41,7 +41,7 @@ libraryDependencies ++= {
     "io.spray" %% "spray-json" % "1.3.1",
     "com.typesafe.akka" %% "akka-actor" % akkaV,
     "ch.qos.logback" % "logback-classic" % "1.1.0",
-    "org.scalatest" % "scalatest_2.10" % "2.0" % "test",
+    "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
     "org.mockito" % "mockito-all" % "1.9.5" % "test",
     "com.github.nscala-time" %% "nscala-time" % "1.4.0",
     "com.typesafe.play" %% "play-json" % "2.4.0-M1",
