@@ -27,6 +27,14 @@ final class StravaService(val config: Configuration, command: StravaServiceComma
     command.makeAPIRequest[Segment](requestUrl)
   }
 
+  def retrieveStarredSegments(): Future[Option[List[Segment]]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "segments/starred"
+    command.makeAPIRequest[List[Segment]](requestUrl)
+  }
+
   def retrieveActivity(id: Long): Future[Option[Activity]] = {
 
     import com.strava.JsonFormats._

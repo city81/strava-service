@@ -35,6 +35,14 @@ object ExampleStravaService extends App {
         println("error " + error)
     }
 
+    // retrieve starred segments
+    stravaService.retrieveStarredSegments() onComplete {
+      case Success(Some(segments)) =>
+        println("Segments are: " + segments)
+      case Failure(error) =>
+        println("error " + error)
+    }
+
     // retrieve a segment effort
     stravaService.retrieveSegmentEffort(testSegmentEffortId) onComplete {
       case Success(Some(segmentEffort)) =>

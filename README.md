@@ -12,6 +12,7 @@ To use the service, you'll need a Strava application token. This needs to be pla
 The ExampleStravaService file contains the below sample calls:
 
     retrieve a segment
+    retrieve starred segments
     retrieve a segment effort
     retrieve an activity
     retrieve an athlete
