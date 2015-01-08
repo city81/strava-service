@@ -7,7 +7,7 @@ import com.strava.domain._
 import scala.concurrent._
 import scala.language.postfixOps
 
-final class StravaService(val config: Configuration, command: StravaServiceCommand)
+final class StravaService(val command: StravaServiceCommand)
                          (implicit executionContext: ExecutionContext, system: ActorSystem) {
 
 
@@ -36,6 +36,15 @@ final class StravaService(val config: Configuration, command: StravaServiceComma
     command.makeAPIRequest[List[SegmentEffort]](requestUrl)
   }
 
+  // TODO add params
+  def retrieveSegmentLeaderboard(id: Long): Future[Option[SegmentLeaderboard]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "segments/" + id.toString + "/leaderboard"
+    command.makeAPIRequest[SegmentLeaderboard](requestUrl)
+  }
+
   // TODO add pagination params
   def retrieveStarredSegments(): Future[Option[List[Segment]]] = {
 
@@ -43,6 +52,15 @@ final class StravaService(val config: Configuration, command: StravaServiceComma
 
     val requestUrl = "segments/starred"
     command.makeAPIRequest[List[Segment]](requestUrl)
+  }
+
+  // TODO add optional params
+  def exploreSegments(requestBody: Option[Map[String,String]]): Future[Option[SegmentsForGivenArea]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "segments/explore"
+    command.makeAPIRequest[SegmentsForGivenArea](requestUrl, requestBody)
   }
 
   def retrieveActivity(id: Long): Future[Option[Activity]] = {

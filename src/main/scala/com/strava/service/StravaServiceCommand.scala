@@ -9,8 +9,8 @@ import spray.httpx.unmarshalling.FromResponseUnmarshaller
 import scala.concurrent._
 import scala.language.postfixOps
 
-final class StravaServiceCommand(val config: Configuration)
-                                (implicit executionContext: ExecutionContext, system: ActorSystem) {
+class StravaServiceCommand(val config: Configuration)
+                          (implicit executionContext: ExecutionContext, system: ActorSystem) {
 
   private def checkStatusCodeAndUnmarshal[T](implicit unmarshaller: FromResponseUnmarshaller[T]): Future[HttpResponse] => Future[Option[T]] =
     (futRes: Future[HttpResponse]) => futRes.map {
@@ -21,17 +21,19 @@ final class StravaServiceCommand(val config: Configuration)
         } else None
     }
 
-  def makeAPIRequest[T](requestUrl: String) //, requestBody: Option[RequestBody] = None)
+  def makeAPIRequest[T](requestUrl: String, requestBody: Option[Map[String, String]] = None)
                        (implicit unmarshaller: FromResponseUnmarshaller[T]): Future[Option[T]] = {
 
+    import com.strava.JsonFormats._
+
     val pipeline = addHeader("Content-Type", "application/json") ~>
-        addHeader("Accept", "application/json") ~>
-        addHeader("Accept-Charset", "UTF-8") ~>
-        addHeader("Authorization", "Bearer " + config.appToken) ~>
-        sendReceive ~> checkStatusCodeAndUnmarshal[T]
+      addHeader("Accept", "application/json") ~>
+      addHeader("Accept-Charset", "UTF-8") ~>
+      addHeader("Authorization", "Bearer " + config.appToken) ~>
+      sendReceive ~> checkStatusCodeAndUnmarshal[T]
 
     pipeline {
-      Get((config.baseUrl + requestUrl)) //, requestBody)
+      Get((config.baseUrl + requestUrl), requestBody)
     }
 
   }

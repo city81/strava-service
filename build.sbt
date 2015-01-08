@@ -46,7 +46,8 @@ libraryDependencies ++= {
     "com.github.nscala-time" %% "nscala-time" % "1.4.0",
     "com.typesafe.play" %% "play-json" % "2.4.0-M1",
     "org.apache.httpcomponents" % "httpclient" % "4.3.6",
-    "net.liftweb" %% "lift-json" % "3.0-M2"
+    "net.liftweb" %% "lift-json" % "3.0-M2",
+    "org.scalamock" %% "scalamock-scalatest-support" % "3.2.1" % "test"
   )
 }
 
