@@ -25,6 +25,7 @@ object ExampleStravaService extends App {
     val testSegmentId = 5395793
     val testSegmentEffortId = 5563767904L
     val testGearId = "b1737196"
+    val testActivityId = 268732899
     val testBounds = Some(Map("bounds" -> "37.821362,-122.505373,37.842038,-122.465977"))
 
     // retrieve a segment
@@ -110,6 +111,21 @@ object ExampleStravaService extends App {
         println("error " + error)
     }
 
+    // retrieve activity
+    stravaService.retrieveActivity(testActivityId) onComplete {
+      case Success(Some(activity)) =>
+        println("Activity is: " + activity)
+      case Failure(error) =>
+        println("error " + error)
+    }
+
+    // retrieve friends activities
+    stravaService.retrieveFriendsActivities onComplete {
+      case Success(Some(friendsActivities)) =>
+        println("Friends Activities are: " + friendsActivities)
+      case Failure(error) =>
+        println("error " + error)
+    }
   }
 
 }

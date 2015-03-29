@@ -71,6 +71,14 @@ final class StravaService(val command: StravaServiceCommand)
     command.makeAPIRequest[Activity](requestUrl)
   }
 
+  def retrieveFriendsActivities: Future[Option[List[Activity]]] = {
+
+    import com.strava.JsonFormats._
+
+    val requestUrl = "activities/following"
+    command.makeAPIRequest[List[Activity]](requestUrl)
+  }
+
   def retrieveAthlete(id: Long): Future[Option[Athlete]] = {
 
     import com.strava.JsonFormats._
